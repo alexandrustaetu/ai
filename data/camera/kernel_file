@@ -1,0 +1,18 @@
+__kernel void calculate_differences(__global int* top_line,__global int* line,__global int* bottom_line,global int* result)
+{
+    unsigned int i = get_global_id(0);
+	int top_left = line[i]-top_line[i-3];
+	int top = line[i]-top_line[i];
+	int top_right = line[i]-top_line[i+3];
+	int left = line[i]-line[i-3];
+	int right = line[i]-line[i+3];
+	int bottom_left = line[i]-bottom_line[i-3];
+	int bottom = line[i]-bottom_line[i];
+	int bottom_right = line[i]-bottom_line[i+3];
+	
+	if( top_left > 20 || top_left < -20 ||  top > 20 || top < -20 ||  top_right > 20 || top_right < -20 ||  left > 20 || left < -20 ||  right > 20 || right < -20 ||  bottom_left > 20 || bottom_left < -20 ||  bottom > 20 || bottom < -20 ||  bottom_right > 20 || bottom_right < -20 ){
+		result[i] = 255;
+	}
+
+}
+
