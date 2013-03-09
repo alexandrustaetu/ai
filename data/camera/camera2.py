@@ -5,6 +5,7 @@ import Image
 import inspect
 from time import gmtime, strftime
 
+#detect margins, with opencl
 
 class VISION:
 	def __init__(self):
