@@ -1,0 +1,22 @@
+__kernel void calculate_differences(__global int* line,__global int* result)
+{
+  unsigned int i = get_global_id(0);
+	 int center = line[i];
+	 int top_left = line[i-1923];
+	 int top = line[i-1920];
+	 int top_right = line[i-1917];
+	 int left = line[i-3];
+	 int right = line[i+3];
+	 int bottom = line[i+1920];
+	 int bottom_left = line[i+1917];
+	 int bottom_right = line[i+1923];
+	if (i < 1921){
+	result[i] = 255;	
+	}else if(i > 919670){
+	result[i] = 255;
+	}else if(center - top_left > 20 || center - top_left < -20 || center - top > 20 || center - top < -20 || center - top_right > 20 || center - top_right < -20 || center - left > 20 || center - left < -20 || center - right > 20 || center - right < -20 || center - bottom_left > 20 || center - bottom_left < -20 || center - bottom > 20 || center - bottom < -20 || center - bottom_right > 20 || center - bottom_right < -20 ){
+	result[i] = 255;
+	}else{
+	result[i] = line[i];	
+	}
+}
